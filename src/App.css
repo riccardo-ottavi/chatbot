@@ -24,7 +24,7 @@ body{
   position: relative;
   background-color: white;
   padding-bottom: 20px;
-  width: 35%;
+  width: 450px;
   margin: 0 auto;
   margin-top: 80px;
 }
@@ -58,12 +58,17 @@ body{
   flex-direction: column;
   height: 460px;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 25px 22px;
+  width: 100%;
+  min-width: 0;
 }
 
 .chat-body .message {
   margin-bottom: 10px;
   max-width: 75%;
+  width: auto;
+  min-width: 0;
 }
 
 .chat-body .bot-message{
@@ -71,10 +76,19 @@ body{
   gap: 11px;
   align-items: center;
   min-height: 50px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .message-text {
+  display: inline-block;
+  max-width: 100%;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
   border-radius: 21px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .bot-message .message-text{
@@ -87,12 +101,15 @@ body{
 }
 
 .user-message .message-text{
+  display: inline-block;
   color: white;
   background-color: rgb(113, 113, 255);
   padding: 12px 16px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.chat-body .bot-message svg{
+.chat-body svg{
   width: 35px;
   height: 35px;
   padding: 5px;

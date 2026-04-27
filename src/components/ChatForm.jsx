@@ -1,6 +1,6 @@
 import { useRef } from "react"
 
-export default function ChatForm() {
+export default function ChatForm({setChatHistory}) {
 
     const inputRef = useRef(null)
 
@@ -8,8 +8,13 @@ export default function ChatForm() {
         e.preventDefault();
         const userMessage = inputRef.current.value.trim()
         if (!userMessage) return;
+        inputRef.current.value = "";
 
-        console.log(userMessage)
+        console.log(userMessage);
+        setChatHistory(history => [...history, {role:"user", text: userMessage}])
+        
+        setTimeout(() => setChatHistory((history) => [...history,{role: "model", text: "thinking"}]),
+        600);
     }
 
     return (

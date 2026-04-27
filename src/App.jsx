@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import ChatbotIcon from './components/ChatbotIcon'
 import ChatForm from './components/ChatForm'
+import ChatMessage from './components/ChatMessage'
 
 function App() {
 
@@ -27,15 +28,18 @@ function App() {
               Hey there!! <br /> How can i help you today? 🔥
             </p>
           </div>
-          <div className="message user-message">
-            <p className="message-text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea repudiandae aspernatur optio facere neque maxime maiores explicabo aliquam sunt ullam nihil at distinctio corporis rem doloremque mollitia, consequatur vero officiis.
-            </p>
-          </div>
+          {chatHistory.map((chat, index) => (
+            <ChatMessage 
+              key={index}
+              chat={chat}
+            />
+          ))}
         </div>
 
         <div className="chat-footer">
-          <ChatForm />
+          <ChatForm 
+            setChatHistory={setChatHistory}
+          />
         </div>
 
       </div>
