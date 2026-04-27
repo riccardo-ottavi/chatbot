@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import './App.css'
 import ChatbotIcon from './components/ChatbotIcon'
+import ChatForm from './components/ChatForm'
 
 function App() {
+
+  const [chatHistory, setChatHistory] = useState([])
 
   return (
     <div className="container">
@@ -21,21 +24,18 @@ function App() {
           <div className="message bot-message">
             <ChatbotIcon />
             <p className="message-text">
-              Hey there!! <br /> How can i help you today?
+              Hey there!! <br /> How can i help you today? 🔥
             </p>
-            <div className="message user-message">
-              <p className="message-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea repudiandae aspernatur optio facere neque maxime maiores explicabo aliquam sunt ullam nihil at distinctio corporis rem doloremque mollitia, consequatur vero officiis.
-              </p>
-            </div>
+          </div>
+          <div className="message user-message">
+            <p className="message-text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea repudiandae aspernatur optio facere neque maxime maiores explicabo aliquam sunt ullam nihil at distinctio corporis rem doloremque mollitia, consequatur vero officiis.
+            </p>
           </div>
         </div>
 
         <div className="chat-footer">
-          <form action="#" className='chat-form'>
-            <input type="text" className="message-input" placeholder='Message...' required/>
-            <img className='arrow-symbol' src="/arrow-up-solid-full.svg" alt="" />
-          </form>
+          <ChatForm />
         </div>
 
       </div>
