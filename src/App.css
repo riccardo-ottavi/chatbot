@@ -3,3 +3,24 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body{
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow-symbol{
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+.container{
+  background-color: white;
+  padding-bottom: 20px;
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 80px;
+}
