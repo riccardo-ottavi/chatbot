@@ -8,6 +8,53 @@ function App() {
 
   const [chatHistory, setChatHistory] = useState([])
 
+  const generateBotResponse = async (history) => {
+
+    const updateHistory = (text) => {
+      setChatHistory(prev => [
+        ...prev.filter(msg => msg.text !== "thinking"),
+        { role: "model", text }
+      ]);
+    };
+
+    const messages = history.map(({ role, text }) => ({
+      role: role === "model" ? "assistant" : "user",
+      content: text
+    }));
+
+    try {
+      const response = await fetch("http://localhost:11434/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "llama3",
+          messages: messages,
+          stream: false
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) throw new Error("Errore Ollama");
+
+      const apiResponseText = data.message.content.trim();
+
+      updateHistory(apiResponseText);
+
+    } catch (error) {
+      console.log(error);
+      updateHistory("Errore nella risposta 😅");
+    }
+  };
+
+  const handleBotResponse = (history) => {
+  console.log("Wrapper chiamato");
+  console.log("FUNZIONE:", generateBotResponse);
+  generateBotResponse(history);
+};
+
   return (
     <div className="container">
       <div className="chatbot-popup">
@@ -29,7 +76,7 @@ function App() {
             </p>
           </div>
           {chatHistory.map((chat, index) => (
-            <ChatMessage 
+            <ChatMessage
               key={index}
               chat={chat}
             />
@@ -37,8 +84,10 @@ function App() {
         </div>
 
         <div className="chat-footer">
-          <ChatForm 
+          <ChatForm
             setChatHistory={setChatHistory}
+            generateBotResponse={handleBotResponse}
+            chatHistory={chatHistory}
           />
         </div>
 
